@@ -1,2 +1,3 @@
 Welcome to git | github!
 file committed by git to github.
+now pulling the changes from github to git in local from remote

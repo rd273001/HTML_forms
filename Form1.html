@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Assignment-1</title>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Internal CSS is used below for layout of the web page -->
+        <style>
+        body {
+            margin: 5px;
+            background-image: linear-gradient(to right,#4ca1af , #c4e0e5);
+        }
+        table {
+            border: solid 5px blue;
+            width: 100%;
+            text-align: center;
+        }
+        td,th {
+            border: solid black;
+        }
+        .btn {
+            margin: 20px 10px 20px 10px;
+            font-size: 13px;
+            width: 90px;
+            background-color: lightskyblue;
+        }
+        .btn:hover {
+            font-size: 13px;
+            width: 90px;
+            background-color: rgb(57, 57, 237);
+        }
+        .btn:active {
+            font-size: 15px;
+            width: 100px;
+            background-color: lightskyblue;
+        }
+        .rst-btn {
+            background-color: rgb(206, 0, 0);
+            font-size: 13px;
+            width: 90px;
+        }
+        .rst-btn:hover {
+            background-color: rgb(250, 146, 108);
+            font-size: 13px;
+            width: 90px;
+        }
+        .rst-btn:active {
+            background-color: rgb(206, 0, 0);
+            font-size: 15px;
+            width: 100px;
+        }
+        input:hover {
+            background-color: lightgrey;
+        }
+        </style>
+        <!-- script tag is used for giving the functionality to the buttons for adding
+        row to bottom and adding row to top and also filling data inside the cells 
+        of the table  which is taken from the user by using form element. -->
+
+        <!-- We can also have data for the row pre filled by just giving the values 
+        to the cells of a row and just clicking add button but in that case all 
+        rows will have same data which is given by us or we have to assign the values 
+        for each row different values which will not be a good way to do it , so I had took 
+        the data from the user for the users convenience as they can fill data what they 
+        want to be in the table. -->
+        <script>     
+            function addRowToBottom() {
+                let firstName=document.rowData.firstName.value; //getting & assigning the value of First Name filled in the form to be inserted in the cell of a row to a variable
+                let lastName=document.rowData.lastName.value;  //getting & assigning value of Last Name filled in the form
+                let city=document.rowData.city.value;  //getting & assigning value of City filled in the form
+                let country=document.rowData.country.value;  //getting & assigning value of Country filled in the form
+                if(firstName=="" || lastName=="" || city=="" || country=="") {
+                    alert("Please fill all the data!");
+                } else {
+                    let cell,firstRow,row;
+                    let table=document.getElementById("myTable");
+                    firstRow=table.rows[0];
+                    row=table.insertRow(-1);   //inserting an empty row at the bottom of the table
+                    for (let i=0;i<firstRow.cells.length;i++) {
+                        cell=row.insertCell(-1)
+                        cell.innerHTML=i==0?(table.rows.length-1):i==1?firstName:i==2?lastName:i==3?city:country;  //values are inserted in cells of the table
+                    }
+                }
+            }
+            function addRowToTop() {
+                // getting values and assigning it to some variables below
+                let firstName=document.rowData.firstName.value;
+                let lastName=document.rowData.lastName.value;
+                let city=document.rowData.city.value;
+                let country=document.rowData.country.value;
+                let cell,firstRow,row;
+                if(firstName=="" || lastName=="" || city=="" || country=="") {
+                    alert("Please fill all the data !");
+                } else {
+                    let table=document.getElementById("myTable");
+                    firstRow=table.rows[0];
+                    row=table.insertRow(1);    //inserting row at the top after first row of headings
+                    for (let i=0;i<firstRow.cells.length;i++) {
+                        cell=row.insertCell(-1);
+                        cell.innerHTML=i==0?(i+1):i==1?firstName:i==2?lastName:i==3?city:country;  //values are inserted in cells of the table
+                    }
+                    for (let i=2;i<table.rows.length;i++){    //loop for adjusting serial number after the row is added at  the top
+                        table.rows[i].cells[0].innerHTML=i;
+                    }
+                }
+            }
+                
+        </script>
+    </head>
+    <body>
+        <p style="text-align:center;font-size:40px;font-weight:bold;">Assignment-1</p><br>
+        <table id="myTable">
+            <tr>
+                <th>S. No.</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>City</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Ravi</td>
+                <td>Dubey</td>
+                <td>Gorakhpur</td>
+                <td>India</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Mukesh</td>
+                <td>Ambani</td>
+                <td>Mumbai</td>
+                <td>India</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Bill</td>
+                <td>Gates</td>
+                <td>Washington</td>
+                <td>U.S</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Ayush</td>
+                <td>Sharma</td>
+                <td>Sitapur</td>
+                <td>India</td>
+            </tr>
+        </table><br>
+        
+        <div style="text-align:center;">
+        <p style="font-size:20px;"><b>Please enter the data below to add in cells of a row of the table:-</b></p><hr>
+        <!-- form tag is used for taking data from input from the user which is to be 
+        filled in a row of the table -->
+        <form method="post" name="rowData">
+            First Name :<br><input type="text" name="firstName" placeholder="Enter your first name" required><br>
+            Last Name :<br><input type="text" name="lastName" placeholder="Enter your last name" required><br>
+            City :<br><input type="text" name="city" placeholder="Enter your city" required><br>
+            Country :<br><input type="text" name="country" placeholder="Enter your country" required><br>
+            <button class="btn" type="button" onclick="addRowToBottom()"><b>Add Row To Bottom</b></Button>
+            <button class="btn" type="button" onclick="addRowToTop()"><b>Add Row To Top</b></Button>
+            <br>
+            <!-- Reset button is created below for the ease of user to clear each 
+                data of form after a row is added to either top or bottom by just 
+            clicking on reset. -->
+            <button class="rst-btn" type="reset"><b>Reset</b></button>
+        </form>
+        </div>
+        <hr>
+
+        <!-- Question statement of Assignment-1 starts below-->
+        <p><b><u>Assignment 1:-</b></u><br>
+            a. Table<br>
+            i. Create an HTML table with 5 columns and 5 rows, with a header row
+            and the first column as SL.No.<br>
+            ii. The header rows should be SL.No., First Name, Last Name, City,
+            Country<br>
+            iii. Fill the table with realistic data<br>
+            b. Buttons<br>
+            i. Create 2 buttons: 1st button called “Add row to bottom” will add a
+            new row with data to the table.<br>
+            ii. 2
+            nd button called “Add row to top” will add a new row to the top of
+            the table below the header row.<br>
+            iii. The S.No. should be automatically adjusted.</p>
+        <!-- Question ended -->
+    </body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Assignment-2</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+         <!-- Internal CSS is used below for layout of the web page -->
+        <style>
+        .bd-ctr {
+            font-weight: bolder;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+        .grad {
+            margin: 10px;
+            padding: 5px;
+            background-image: linear-gradient(to right, #3a1c71 , #d76d77, #ffaf7b);
+        }
+        #grad {
+            background-color: #9999 ;
+            font-size: 20px;
+            border: solid 5px blueviolet;
+            border-radius: 20px;
+            padding: 10px;
+        }
+        .btn {
+            margin: 20px;
+            font-size: 22px;
+            width: 100px;
+            background-color: blueviolet;
+        }
+        .btn:hover {
+            font-size: 22px;
+            width: 100px;
+            background-color: rgb(57, 57, 237);
+        }
+        .btn:active {
+            font-size: 24px;
+            width: 110px;
+            background-color: blueviolet;
+        }
+        input:hover {
+            background-color: lightgrey;
+        }
+        </style>
+        <!-- script element is used for implementing the functionality for 
+        the desired output after clicking submit button-->
+        <script>
+            function showInOutput() {
+                let sentence = document.input.sentence.value;
+                let letter = document.input.letter.value;
+                if(sentence=="" || letter=="" || letter.length != 1)
+                    alert("Please give all the inputs correctly!");
+                else if(sentence.indexOf(letter) != -1) {
+                    document.getElementById("result").innerHTML = "Result : " +sentence.slice((sentence.indexOf(letter)+1));
+                } else {
+                    document.getElementById("result").innerHTML = "Result : The letter does not exist in the sentence";
+                }
+            }     
+        </script>
+        
+    </head>
+    <body class="grad">
+        <p class="bd-ctr" style="font-size:40px;">Assignment-2</p><hr>
+        <br><br>
+        <p class="bd-ctr" style="font-size:20px;margin-bottom:5px;"><b>Please enter the input below :-</b></p>
+        <div id="grad" class="bd-ctr">
+        <!-- form tag is used for taking input from the user -->
+        <form method="post" name="input" >
+            Enter a Sentence :<br><input type="text" name="sentence" placeholder="Any English sentence" required style="height:30px;"><br><br>
+            Enter a Letter :<br><input type="text" name="letter" placeholder="Any letter from A to Z" required style="height:30px;"><br>
+            <button class="btn bd-" type="button" onclick="showInOutput()"><b>Submit</b></Button>
+                <p id="result"  style="font-weight:normal;color:blue;border:solid;border-radius:10px;width:100%"></p>
+        </form>
+        </div>
+        <br><br><hr>
+        <!-- Question statement of Assignment-2 starts below-->
+        <p><b><u>Assignment 2:-</b></u><br>
+            A. Create an HTML page with the following functionality<br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp i. It should ask the user 2 inputs:<br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 1. Enter a Sentence (any English sentence)<br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2. Enter a Letter (any letter from A to Z)<br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp ii. On clicking on “Submit” button it should output the rest of the
+            sentence after the first occurrence of the letter in the sentence<br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp iii. If the letter does not exist in the sentence, output :- “The letter does
+            not exist in the sentence”.<br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp iv. Example 1<br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 1. Sentence: Hello World!<br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2. Letter: r<br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 3. Result: ld!<br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp v. Example 2<br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 1. Sentence: Hello World!<br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2. Letter: o<br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 3. Result: World!</p>
+        <!-- Question ended -->
+    </body>
+</html>

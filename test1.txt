@@ -1,3 +1,0 @@
-file to be be pushed to github.
-pull from github to local.
-single file is added and committed.
